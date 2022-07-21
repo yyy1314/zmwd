@@ -9,7 +9,7 @@ on:
       - dev
     # 指定文件发生修改
     paths:
-      - 'config.gradle'
+      - 'readme.md'
 jobs:
 # 多个job，如果有多个，每个以“-”开头
   first-job:
