@@ -3,16 +3,14 @@ name: Auto build debug apk
 # 设置workflow的触发条件
 # 在pull和push到主分支时触发workflow
 # 在push tags时触发workflow
+
+
 on:
-  pull_request:
-    branches:
-      - 'master'
   push:
-    branches:
-      - 'master'
-    # 在push tag时触发
-    tags:
-      - '*'
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
 
 # workflow的所有作业job
 jobs:
