@@ -2,9 +2,12 @@ name: android master CI
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    # 在指定的远程分支上，发生推送
+    branches:
+      - dev
+    # 指定文件发生修改
+    paths:
+      - 'config.gradle'
 
 jobs:
   build:
