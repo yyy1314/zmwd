@@ -28,5 +28,5 @@ jobs:
         with:
           name: upload-apk
           path: |
-            app/build/outputs/apk/debug/xw-debug.apk
-            app/build/outputs/apk/debug/x1w-debug.apk
+            ${{github.workspace}}/app/build/outputs/apk/tencent/release/*.apk
+            ${{github.workspace}}/app/build/outputs/apk/xiaomi/release/*.apk
