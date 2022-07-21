@@ -1,4 +1,4 @@
-name: Build and upload
+name: DEBUG_CI
 
 on:
   push:
@@ -28,5 +28,4 @@ jobs:
         with:
           name: upload-apk
           path: |
-            ${{github.workspace}}/app/release/*.apk
-            ${{github.workspace}}/app/release/*.apk
+           app/release/outputs/apk/debug/xw-debug.apk
