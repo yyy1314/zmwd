@@ -1,0 +1,65 @@
+// 首先第一行应用了一个插件，
+// 一般有两种值可选：com.android.application表示这是一个应用程序模块，
+// com.android.library表示这是一个库模块
+// 应用程序模块和库模块的最大区别在于，一个是可以直接运行的，一个只能作为代码库依附于别的应用程序模块来运行
+
+apply plugin: 'com.android.application'
+
+android {
+    // 指定项目的编译版本
+    compileSdkVersion 29
+
+    // buildToolsVersion用于指定项目构建工具的版本
+    buildToolsVersion "29.0.3"
+    defaultConfig {
+        // 指定项目的包名
+        applicationId "com.hua.huade001android"
+
+        // 指定项目最低兼容的Android系统版本
+        minSdkVersion 28
+
+        // targetSdkVersion指定的值表示你在该目标版本上已经做过了充分的测试，系统将会为你的应用程序启用一些最新的功能和特性
+        targetSdkVersion 29
+
+        // versionCode用于指定项目的版本号
+        versionCode 1
+
+        // versionName用于指定项目的版本名
+        versionName "1.0.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    // 指定生成安装文件的相关配置
+    buildTypes {
+        // 指定生成正式版安装文件的配置
+        release {
+            // 是否对项目的代码进行混淆
+            minifyEnabled true
+            // proguardFiles用于指定混淆时使用的规则文件，这里指定了两个文件，
+            // 第一个proguard-android.txt是在Android SDK目录下的，里面是所有项目通用的混淆规则，
+            // 第二个proguard-rules.pro是在当前项目的根目录下的，里面可以编写当前项目特有的混淆规则
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    // Android Studio项目一共有3种依赖方式：本地依赖、库依赖和远程依赖
+    // 添加一个库依赖  implementation project(':helper')
+    // implementation fileTree是一个本地依赖声明，
+    // 它表示将libs目录下所有.jar后缀的文件都添加到项目的构建路径当中
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // 远程依赖声明，androidx.appcompat:appcompat:1.2.0就是一个标准的远程依赖库格式，
+    // 其中androidx.appcompat是域名部分，用于和其他公司的库做区分；
+    // appcompat是组名称，用于和同一个公司中不同的库做区分；
+    // 1.2.0是版本号，用于和同一个库不同的版本做区分
+    // 加上这句声明后，Gradle在构建项目时会首先检查一下本地是否已经有这个库的缓存，
+    // 如果没有的话则会去自动联网下载，然后再添加到项目的构建路径当中
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.google.android.material:material:1.2.0'
+    // testImplementation 是用于声明测试用例库
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}

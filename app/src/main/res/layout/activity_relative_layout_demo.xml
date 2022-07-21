@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RelativeLayoutDemoActivity">
+
+    <!-- relative_btn1 对其父元素中的左边和Top  -->
+
+    <Button
+        android:id="@+id/relative_btn1"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="relative_btn1" />
+
+    <!-- relative_btn1 对其父元素中的右边和Top  -->
+    <Button
+        android:id="@+id/relative_btn2"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:text="relative_btn2" />
+
+    <!-- relative_btn3 控件在父元素中的中间位置  -->
+    <Button
+        android:id="@+id/relative_btn3"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_centerInParent="true"
+        android:text="relative_btn3" />
+
+
+    <!-- relative_btn4 相当于 relative_btn3 的上边 ，并且在 relative_btn3 的左边-->
+    <Button
+        android:id="@+id/relative_btn4"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_above="@id/relative_btn3"
+        android:layout_toLeftOf="@id/relative_btn3"
+        android:text="relative_btn4" />
+
+    <!-- relative_btn5 相当于 relative_btn3 的上边 ，并且在 relative_btn3 的右边-->
+    <Button
+        android:id="@+id/relative_btn5"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_above="@id/relative_btn3"
+        android:layout_toRightOf="@id/relative_btn3"
+        android:text="relative_btn5" />
+
+    <!-- relative_btn5 相当于 relative_btn3 的下边 ，并且在 relative_btn3 的右边-->
+    <Button
+        android:id="@+id/relative_btn6"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@id/relative_btn3"
+        android:layout_toRightOf="@id/relative_btn3"
+        android:text="relative_btn6" />
+
+    <!-- relative_btn7 相当于 relative_btn3 的下边 ，并且和relative_btn4 的左边对齐 -->
+    <Button
+        android:id="@+id/relative_btn7"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/relative_btn3"
+        android:layout_alignLeft="@id/relative_btn4"
+        android:text="relative_btn7" />
+
+    <!-- relative_btn8 和 relative_btn3 的top 对齐-->
+    <Button
+        android:id="@+id/relative_btn8"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:background="@color/blue"
+        android:layout_alignTop="@id/relative_btn3"
+        android:text="b8" />
+
+
+</RelativeLayout>
