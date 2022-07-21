@@ -7,7 +7,7 @@ on:
       - dev
     # 指定文件发生修改
     paths:
-      - 'config.gradle'
+      - 'readme.md'
 
 jobs:
   build:
