@@ -19,7 +19,7 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew assembleRelease
     - name: showfiles
-       run:
+      run:
         cd /home/runner/work/ProjectPath/~/local/rubies/app/build/outputs/apk/release/
         ls
     - uses: actions/checkout@v1
