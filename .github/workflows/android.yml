@@ -17,7 +17,11 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      run: ./gradlew assembleRelease
+      run: bash ./gradlew assembleRelease
+    # 创建release
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
     - name: showfiles
       run: |  
         cd /home/runner/work/ProjectPath/~/local/rubies/app/build/outputs/apk/release/
