@@ -18,8 +18,9 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew assembleRelease
-      run:
-        ./gradlew
+    - name: showfiles
+       run: |  
+        cd /home/runner/work/ProjectPath/~/local/rubies/app/build/outputs/apk/release/
         ls
     - uses: actions/checkout@v1
       id: cache
