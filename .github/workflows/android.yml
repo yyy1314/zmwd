@@ -20,7 +20,7 @@ jobs:
       run: bash ./gradlew assembleRelease
     - name: showfiles
       run: |  
-        cd /home/runner/work/ProjectPath/~/local/rubies/app/build/outputs/apk/release/
+       # cd /home/runner/work/ProjectPath/~/local/rubies/app/build/outputs/apk/release/
         ls
     - uses: actions/checkout@v1
       id: cache
