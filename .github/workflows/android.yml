@@ -73,4 +73,4 @@ jobs:
        run: sudo gem install fir-cli
      - name: Upload to Fir.im
        run: fir login ${{ secrets.FIRTOKEN }}
-     - run: fir publish app/build/outputs/apk/debug/app-debug.apk
+     - run: fir publish apk/app-debug.apk
