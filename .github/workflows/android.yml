@@ -13,8 +13,7 @@ jobs:
       with:
         java-version: '11'
         distribution: 'adopt'
-
-- name: Build debug APK
+    - name: Build debug APK
         run: bash ./gradlew assembleDebug --stacktrace
       # 利用upload-artifact实现build结果的保存（可以在Actions的控制台下载压缩文件）
       - name: Upload APK
