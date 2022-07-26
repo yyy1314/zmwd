@@ -119,3 +119,27 @@ jobs:
           asset_path: ./app-debug-${{steps.prepare_release.outputs.tag_name}}.apk
           asset_name: app-debug-${{steps.prepare_release.outputs.tag_name}}.apk
           asset_content_type: application/vnd.android.package-archive
+        with:
+          - uses: actions/cache@preview
+      id: cache
+      with:
+        path: ~/local/rubies
+        key: ruby-2.6.5    
+    - uses: clupprich/ruby-build-action@master
+      id: ruby
+      with:
+        - uses: actions/cache@preview
+      id: cache
+      with:
+        path: ~/local/rubies
+        key: ruby-2.6.5    
+    - uses: clupprich/ruby-build-action@master
+      id: ruby
+      with:
+        ruby-version: 2.6.5
+        files: app/build/outputs/apk/release/app-release.apk
+      - name: install fir.im
+      run: gem install fir-cli
+- name: Upload to Fir.im
+      run: fir login ${{ secrets.FIRTOKEN }}
+- run: fir publish app/build/outputs/apk/release/app-release.apk
