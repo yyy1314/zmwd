@@ -19,7 +19,7 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew assembleRelease
-      run:tree
+      run: tree
     - uses: actions/checkout@v1
       id: cache
       with:
