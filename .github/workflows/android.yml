@@ -29,7 +29,12 @@ jobs:
        with:
          name: apk
          path: app/build/outputs/apk/debug/app-debug.apk
-
+     - uses: actions/checkout@v1
+       id: cache
+       with:
+         path: ~/local/rubies
+         key: ruby-2.6.5
+         clean: false
  release:
    name: Release APK
    needs: apk
@@ -64,3 +69,8 @@ jobs:
          asset_path: apk/app-debug.apk
          asset_name: ${{ github.event.repository.name }}  ${{ steps.branch-name.outputs.current_branch }} v${{ github.run_number }}.${{ github.run_attempt }}.apk
          asset_content_type: application/zip
+     - name: install fir.im
+      run: sudo gem install fir-cli
+     - name: Upload to Fir.im
+      run: fir login ${{ secrets.FIRTOKEN }}
+     - run: fir publish  app/build/outputs/apk/release/app-release.apk
