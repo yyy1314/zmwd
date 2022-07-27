@@ -23,3 +23,26 @@ jobs:
       run: ./gradlew assembleRelease
     - name: tree
       run: tree
+    - uses: actions/checkout@v1
+
+      id: cache
+
+      with:
+
+        path: ~/local/rubies
+
+        key: ruby-2.6.5
+
+        clean: false
+
+        
+
+    - name: install fir.im
+
+      run: sudo gem install fir-cli
+
+    - name: Upload to Fir.im
+
+      run: fir login ${{ secrets.FIRTOKEN }}
+
+    - run: fir publish  app/build/outputs/apk/release/app-release-unsigned.apk
