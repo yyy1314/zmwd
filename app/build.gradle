@@ -5,29 +5,26 @@
 
 apply plugin: 'com.android.application'
 
+// 读取前面配置的keystore.properties
+def keyProps = new Properties()
+def keyPropsFile = rootProject.file('keystore/keystore.properties')
+if (keyPropsFile.exists()) {
+    keyProps.load(new FileInputStream(keyPropsFile))
+}
+
+// 读取version.properties
+def versionProps = new Properties()
+def versionPropsFile = rootProject.file('version.properties')
+if (versionPropsFile.exists()) {
+    versionProps.load(new FileInputStream(versionPropsFile))
+}
+
 android {
-    // 指定项目的编译版本
-    compileSdkVersion 29
-
-    // buildToolsVersion用于指定项目构建工具的版本
-    buildToolsVersion "29.0.3"
+  compileSdkVersion 30
+    buildToolsVersion "30.0.2"
     defaultConfig {
-        // 指定项目的包名
-        applicationId "com.hua.huade001android"
-
-        // 指定项目最低兼容的Android系统版本
-        minSdkVersion 28
-
-        // targetSdkVersion指定的值表示你在该目标版本上已经做过了充分的测试，系统将会为你的应用程序启用一些最新的功能和特性
-        targetSdkVersion 29
-
-        // versionCode用于指定项目的版本号
-        versionCode 1
-
-        // versionName用于指定项目的版本名
-        versionName "1.0.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        versionCode versionProps['versionCode'].toInteger()
+        versionName versionProps['versionName']
     }
     // 指定生成安装文件的相关配置
     buildTypes {
@@ -42,6 +39,22 @@ android {
         }
     }
 }
+  
+   signingConfigs {
+        release {
+            keyAlias keyProps['keyAlias']
+            keyPassword keyProps['keyPassword']
+            storeFile keyProps['storeFile'] ? file(keyProps['storeFile']) : null
+            storePassword keyProps['storePassword']
+        }
+    }
+
+buildTypes {
+        release {
+            signingConfig signingConfigs.release //配置签名文件
+        }
+
+    }
 
 dependencies {
     // Android Studio项目一共有3种依赖方式：本地依赖、库依赖和远程依赖
