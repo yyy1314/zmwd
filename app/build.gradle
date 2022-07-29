@@ -20,27 +20,14 @@ if (versionPropsFile.exists()) {
 }
 
 android {
-  compileSdkVersion 30
+    compileSdkVersion 30
     buildToolsVersion "30.0.2"
     defaultConfig {
         versionCode versionProps['versionCode'].toInteger()
         versionName versionProps['versionName']
     }
-    // 指定生成安装文件的相关配置
-    buildTypes {
-        // 指定生成正式版安装文件的配置
-        release {
-            // 是否对项目的代码进行混淆
-            minifyEnabled true
-            // proguardFiles用于指定混淆时使用的规则文件，这里指定了两个文件，
-            // 第一个proguard-android.txt是在Android SDK目录下的，里面是所有项目通用的混淆规则，
-            // 第二个proguard-rules.pro是在当前项目的根目录下的，里面可以编写当前项目特有的混淆规则
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-}
-  
-   signingConfigs {
+    // 签名
+    signingConfigs {
         release {
             keyAlias keyProps['keyAlias']
             keyPassword keyProps['keyPassword']
@@ -49,12 +36,14 @@ android {
         }
     }
 
-buildTypes {
+    buildTypes {
         release {
             signingConfig signingConfigs.release //配置签名文件
         }
 
     }
+}
+
 
 dependencies {
     // Android Studio项目一共有3种依赖方式：本地依赖、库依赖和远程依赖
